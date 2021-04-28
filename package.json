@@ -1,36 +1,29 @@
 {
-  "name": "cable_ready",
+  "name": "cable_ready-repo",
   "version": "4.5.0",
+  "private": true,
   "description": "CableReady helps you create great real-time user experiences by making it simple to trigger client-side DOM changes from server-side Ruby.",
-  "keywords": [
-    "ruby",
-    "rails",
-    "websockets",
-    "actioncable",
-    "cable",
-    "ssr",
-    "stimulus_reflex",
-    "client-side",
-    "dom"
-  ],
   "homepage": "https://cableready.stimulusreflex.com/",
-  "bugs": {
-    "url": "https://github.com/hopsoft/cable_ready/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com:hopsoft/cable_ready.git"
-  },
+  "bugs": "https://github.com/hopsoft/cable_ready/issues",
+  "repository": "https://github.com/hopsoft/cable_ready",
   "license": "MIT",
   "author": "Nathan Hopkins <natehop@gmail.com>",
-  "main": "./javascript/cable_ready.js",
+  "main": "./packages/cable_ready/index.js",
+  "module": "./packages/cable_ready/index.js",
   "scripts": {
-    "prettier-standard-check": "yarn run prettier-standard --check ./javascript/**/*.js"
+    "prepare": "yarn bootstrap",
+    "reset": "lerna clean",
+    "prettier-standard:check": "lerna run --parallel prettier-standard:check",
+    "prettier-standard:format": "lerna run --parallel prettier-standard:format",
+    "bootstrap": "lerna bootstrap",
+    "release": "lerna publish",
+    "release:beta": "lerna publish --npm-tag=beta"
   },
+  "workspaces": [
+    "packages/*",
+    "packages/@cable_ready/*"
+  ],
   "dependencies": {
-    "morphdom": "^2.6.1"
-  },
-  "devDependencies": {
-    "prettier-standard": "^16.1.0"
+    "lerna": "^4.0.0"
   }
 }
